@@ -1,0 +1,19 @@
+# Visual Studio Code
+.vscode/**/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Dependencies
+node_modules
+
+# Generated output
+dist
+
+# Packed package
+*.tgz
+
+# Logs
+.pnpm-debug.log*
+
+# Miscellaneous
+**/.DS_Store
