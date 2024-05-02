@@ -5,9 +5,14 @@
 ![Package Manager](https://img.shields.io/badge/Package_Manager-pnpm-orange?style=flat-square&logo=pnpm)
 [![Code Style](https://img.shields.io/badge/Code_Style-Prettier-FF69B4?style=flat-square&logo=prettier)](https://github.com/prettier/prettier)
 
-The Tenor API Wrapper is a Node.js package that provides a simple way to interact with the [Tenor API (v2)](https://developers.google.com/tenor/guides/quickstart). It wraps the various endpoints of the Tenor API and creates functions for each, allowing for quick and easy access without the need to manually handle the fetching and parsing of data.
+The Tenor API Wrapper is a Node.js package that provides a simple way to interact with the
+[Tenor API (v2)](https://developers.google.com/tenor/guides/quickstart). It wraps the various
+endpoints of the Tenor API and creates functions for each, allowing for quick and easy access
+without the need to manually handle the fetching and parsing of data.
 
-_Typings and JSDoc descriptions were taken from the [Tenor API Documentation](https://developers.google.com/tenor/guides/quickstart) and the [Google Cloud APIs Errors Documentation](https://cloud.google.com/apis/design/errors)._
+_Typings and JSDoc descriptions were taken from the
+[Tenor API Documentation](https://developers.google.com/tenor/guides/quickstart) and the
+[Google Cloud APIs Errors Documentation](https://cloud.google.com/apis/design/errors)._
 
 ---
 
@@ -44,7 +49,9 @@ pnpm add @cielsachen/tenor-api-wrapper
 
 ### API Key
 
-You can set the API key that the wrapper will use by passing the [Google Cloud Tenor API key](https://developers.google.com/tenor/guides/quickstart#setup) to the class' constructor.
+You can set the API key that the wrapper will use by passing the
+[Google Cloud Tenor API key](https://developers.google.com/tenor/guides/quickstart#setup) to the
+class' constructor.
 
 ```typescript
 import { Tenor } from "@cielsachen/tenor-api-wrapper";
@@ -79,11 +86,14 @@ tenor
 
 ## API Reference
 
-_The Tenor API Wrapper does not currently support the **[Register Share](https://developers.google.com/tenor/guides/endpoints#register-share)** endpoint of the Tenor API._
+_The Tenor API Wrapper does not currently support the
+**[Register Share](https://developers.google.com/tenor/guides/endpoints#register-share)** endpoint
+of the Tenor API._
 
 ### fetchGIFsByQuery
 
-Fetch a JSON object that contains a list of the most relevant GIFs for a given set of search terms, categories, emojis, or any combination of these.
+Fetch a JSON object that contains a list of the most relevant GIFs for a given set of search terms,
+categories, emojis, or any combination of these.
 
 ```typescript
 // Example usage
