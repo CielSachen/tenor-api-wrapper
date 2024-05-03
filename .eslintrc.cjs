@@ -1,4 +1,4 @@
-/** @type {import('eslint').Linter.Config} */
+/** @type {import('@typescript-eslint/utils/ts-eslint').ClassicConfig.Config} */
 module.exports = {
   env: {
     node: true,
