@@ -40,10 +40,13 @@ export interface Error {
 }
 
 /** Represents a Google API error object. */
-export class GoogleAPIError extends Error implements Status {
-  public readonly code: number;
-  public readonly status?: string;
-  public readonly details?: readonly Record<string, unknown>[];
+export class GoogleAPIError extends Error implements Omit<Status, "message" | "errors"> {
+  /** The HTTP status code that corresponds to `google.rpc.Status.code`. */
+  public readonly code;
+  /** This is the enum version for `google.rpc.Status.code`. */
+  public readonly status?;
+  /** This corresponds to `google.rpc.Status.details`. */
+  public readonly details?;
 
   /**
    * Constructs a new instance of a Google API error object.
