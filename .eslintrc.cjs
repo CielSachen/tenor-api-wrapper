@@ -89,7 +89,6 @@ module.exports = {
         contexts: ["PropertyDefinition"],
       },
     ],
-    "jsdoc/require-returns": ["warn", { checkGetters: false }],
     "simple-import-sort/exports": "warn",
     "simple-import-sort/imports": "warn",
   },

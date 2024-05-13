@@ -55,14 +55,9 @@ export class GoogleAPIError extends Error implements Omit<Status, "message" | "e
   constructor(error: Status) {
     super(error.message);
 
+    this.name = "GoogleAPIError";
     this.code = error.code;
     this.status = error.status;
     this.details = error.details;
-  }
-
-  /** The name for the type of error. */
-  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
-  get name() {
-    return "UrbanDictionaryAPIError";
   }
 }
