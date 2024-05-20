@@ -1,4 +1,4 @@
-import { fetchJSON } from "@lib/fetch.js";
+import { fetchJson } from "@lib/fetch.js";
 
 /**
  * The content format offered by the Tenor API.
@@ -363,8 +363,8 @@ export class Tenor {
    * @param parameters The optional endpoint parameters.
    * @returns The JSON object containing a list of GIFs.
    */
-  public async fetchGIFsByQuery(query: string, parameters?: SearchParameters) {
-    return fetchJSON<SearchResponse>(
+  public async fetchGifsByQuery(query: string, parameters?: SearchParameters) {
+    return fetchJson<SearchResponse>(
       "search",
       new URLSearchParams({ key: this.#key, q: query, ...parameters }),
     );
@@ -375,8 +375,8 @@ export class Tenor {
    * @param parameters The optional endpoint parameters.
    * @returns The JSON object containing a list of featured GIFs.
    */
-  public async fetchFeaturedGIFs(parameters?: FeaturedParameters) {
-    return fetchJSON<FeaturedResponse>(
+  public async fetchFeaturedGifs(parameters?: FeaturedParameters) {
+    return fetchJson<FeaturedResponse>(
       "featured",
       new URLSearchParams({ key: this.#key, ...parameters }),
     );
@@ -387,8 +387,8 @@ export class Tenor {
    * @param parameters The optional endpoint parameters.
    * @returns The JSON object containing a list of GIF categories.
    */
-  public async fetchGIFCategories(parameters?: CategoriesParameters) {
-    return fetchJSON<CategoriesResponse>(
+  public async fetchGifCategories(parameters?: CategoriesParameters) {
+    return fetchJson<CategoriesResponse>(
       "categories",
       new URLSearchParams({ key: this.#key, ...parameters }),
     );
@@ -404,7 +404,7 @@ export class Tenor {
     query: string,
     parameters?: SearchSuggestionsParameters,
   ) {
-    return fetchJSON<SearchSuggestionsResponse>(
+    return fetchJson<SearchSuggestionsResponse>(
       "search_suggestions",
       new URLSearchParams({ key: this.#key, q: query, ...parameters }),
     );
@@ -418,7 +418,7 @@ export class Tenor {
    * @returns The JSON object containing a list of completed search terms.
    */
   public async fetchAutocompleteByQuery(query: string, parameters?: AutocompleteParameters) {
-    return fetchJSON<AutocompleteResponse>(
+    return fetchJson<AutocompleteResponse>(
       "autocomplete",
       new URLSearchParams({ key: this.#key, q: query, ...parameters }),
     );
@@ -430,7 +430,7 @@ export class Tenor {
    * @returns The JSON object containing a list of trending search terms.
    */
   public async fetchTrendingSearchTerms(parameters?: TrendingSearchTermsParameters) {
-    return fetchJSON<TrendingSearchTermsResponse>(
+    return fetchJson<TrendingSearchTermsResponse>(
       "trending_terms",
       new URLSearchParams({ key: this.#key, ...parameters }),
     );
@@ -443,7 +443,7 @@ export class Tenor {
    * @returns The JSON object containing a list of GIFs, stickers, or a combination of the two.
    */
   public async fetchPostsById(ids: string, parameters?: PostsParameters) {
-    return fetchJSON<PostsResponse>(
+    return fetchJson<PostsResponse>(
       "posts",
       new URLSearchParams({ ids, key: this.#key, ...parameters }),
     );

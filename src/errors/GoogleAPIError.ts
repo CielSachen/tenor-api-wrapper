@@ -40,7 +40,7 @@ export interface Error {
 }
 
 /** Represents a Google API error object. */
-export class GoogleAPIError extends Error implements Omit<Status, "message" | "errors"> {
+export class GoogleApiError extends Error implements Omit<Status, "message" | "errors"> {
   /** The HTTP status code that corresponds to `google.rpc.Status.code`. */
   public readonly code;
   /** This is the enum version for `google.rpc.Status.code`. */
@@ -55,7 +55,7 @@ export class GoogleAPIError extends Error implements Omit<Status, "message" | "e
   constructor(error: Status) {
     super(error.message);
 
-    this.name = "GoogleAPIError";
+    this.name = "GoogleApiError";
     this.code = error.code;
     this.status = error.status;
     this.details = error.details;

@@ -1,1 +1,1 @@
-export * from "./GoogleAPIError.js";
+export * from "./GoogleApiError.js";
