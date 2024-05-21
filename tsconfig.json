@@ -4,9 +4,8 @@
     "lib": ["ESNext"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "module": "NodeNext",
+    "module": "Preserve",
     "rootDir": "src",
-    "moduleResolution": "NodeNext",
     "baseUrl": "./src/",
     "paths": {
       "@client": ["client/index.ts"],
@@ -14,9 +13,6 @@
       "@lib/*": ["lib/*"]
     },
     "resolveJsonModule": true,
-    "declaration": true,
-    "outDir": "dist",
-    "importHelpers": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -24,8 +20,5 @@
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
-  "include": ["src"],
-  "tsc-alias": {
-    "verbose": true
-  }
+  "include": ["src"]
 }
