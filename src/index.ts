@@ -1,2 +1,2 @@
-export * from "@client";
+export * from "./Tenor.js";
 export * from "@errors";

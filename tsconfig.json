@@ -9,7 +9,6 @@
     "module": "Preserve",
     "baseUrl": "./src/",
     "paths": {
-      "@client": ["client/index.ts"],
       "@errors": ["errors/index.ts"],
       "@lib/*": ["lib/*"]
     },
