@@ -3,7 +3,6 @@
     "aaron-bond.better-comments",
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
-    "pmneo.tsimporter",
     "redhat.vscode-yaml"
   ]
 }
