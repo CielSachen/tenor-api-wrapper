@@ -1,10 +1,4 @@
 /**
- * _Converted from Protocol Buffers to TypeScript._
- * @deprecated This message is only used by error format v1.
- */
-export type ErrorProto = object;
-
-/**
  * This message has the same semantics as `google.rpc.Status`. It uses HTTP status code instead of
  * gRPC status code. It has extra fields `status` and `errors` for backward compatibility with
  * {@link https://developers.google.com/api-client-library Google API Client Libraries}.
@@ -16,8 +10,6 @@ export interface Status {
   readonly code: number;
   /** This corresponds to `google.rpc.Status.message`. */
   readonly message: string;
-  /** @deprecated This field is only used by error format v1. */
-  readonly errors?: readonly ErrorProto[];
   /** This is the enum version for `google.rpc.Status.code`. */
   readonly status?: string;
   /** This corresponds to `google.rpc.Status.details`. */
@@ -40,7 +32,7 @@ export interface Error {
 }
 
 /** Represents a Google API error object. */
-export class GoogleApiError extends Error implements Omit<Status, "message" | "errors"> {
+export class GoogleApiError extends Error implements Omit<Status, "message"> {
   /** The HTTP status code that corresponds to `google.rpc.Status.code`. */
   public readonly code;
   /** This is the enum version for `google.rpc.Status.code`. */
