@@ -22,7 +22,7 @@ export interface Status {
  * _Converted from Protocol Buffers to TypeScript._
  * @see {@link https://cloud.google.com/apis/design/errors#http_mapping Google Cloud APIs ErrorDocumentation}
  */
-export interface Error {
+export interface GoogleError {
   /**
    * The actual error payload. The nested message structure is for backward compatibility with
    * {@link https://developers.google.com/api-client-library Google API Client Libraries}. It also
