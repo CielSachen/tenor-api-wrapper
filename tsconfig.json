@@ -9,8 +9,8 @@
     "module": "Preserve",
     "baseUrl": "./src/",
     "paths": {
-      "@errors": ["errors/index.ts"],
-      "@lib/*": ["lib/*"]
+      "@/errors": ["errors/index.ts"],
+      "@/lib/*": ["lib/*"]
     },
     "resolveJsonModule": true,
 

@@ -1,4 +1,4 @@
-import { fetchJson } from "@lib/fetch.js";
+import { fetchJson } from "@/lib/fetch.js";
 
 /**
  * The content format offered by the Tenor API.

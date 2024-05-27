@@ -1,4 +1,4 @@
-import { GoogleApiError, type GoogleError } from "@errors";
+import { GoogleApiError, type GoogleError } from "@/errors";
 
 /**
  * Fetches the JSON object response of a Tenor API endpoint.
