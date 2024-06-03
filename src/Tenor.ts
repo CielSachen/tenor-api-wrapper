@@ -1,7 +1,6 @@
 import { fetchJson } from "@/lib/fetch.js";
 
 /**
- * The content format offered by the Tenor API.
  * @see {@link https://developers.google.com/tenor/guides/response-objects-and-errors#format-typesTenor}
  */
 export type CONTENT_FORMAT =
@@ -31,7 +30,6 @@ export type CONTENT_FORMAT =
   | "nanogif_transparent";
 
 /**
- * Describes the properties of a Tenor visual media.
  * @see {@link https://developers.google.com/tenor/guides/response-objects-and-errors#media-object}
  */
 export interface MEDIA_OBJECT {
@@ -49,7 +47,6 @@ export interface MEDIA_OBJECT {
 }
 
 /**
- * Describes the properties of a Tenor API response object.
  * @see {@link https://developers.google.com/tenor/guides/response-objects-and-errors#response-object}
  */
 export interface RESPONSE_OBJECT {
@@ -91,7 +88,6 @@ export interface RESPONSE_OBJECT {
 }
 
 /**
- * Describes the properties of a Tenor category.
  * @see {@link https://developers.google.com/tenor/guides/response-objects-and-errors#category-object}
  */
 export interface CATEGORY_OBJECT {
@@ -111,10 +107,7 @@ export interface CATEGORY_OBJECT {
   readonly name: string;
 }
 
-/**
- * Describes the query string parameters of the `Search` endpoint.
- * @see {@link https://developers.google.com/tenor/guides/endpoints#parameters-search}
- */
+/** @see {@link https://developers.google.com/tenor/guides/endpoints#parameters-search} */
 export interface SearchParameters {
   /**
    * A client-specified string that represents the integration.
@@ -217,16 +210,10 @@ export interface SearchParameters {
   pos?: string;
 }
 
-/**
- * Describes the query string parameters of the `Featured` endpoint.
- * @see {@link https://developers.google.com/tenor/guides/endpoints#parameters-featured}
- */
+/** @see {@link https://developers.google.com/tenor/guides/endpoints#parameters-featured} */
 export interface FeaturedParameters extends Omit<SearchParameters, "random"> {}
 
-/**
- * Describes the query string parameters of the `Categories` endpoint.
- * @see {@link https://developers.google.com/tenor/guides/endpoints#parameters-categories}
- */
+/** @see {@link https://developers.google.com/tenor/guides/endpoints#parameters-categories} */
 export interface CategoriesParameters
   extends Pick<SearchParameters, "client_key" | "country" | "locale" | "contentfilter"> {
   /**
@@ -240,34 +227,21 @@ export interface CategoriesParameters
 }
 
 /**
- * Describes the query string parameters of the `Search Suggestions` endpoint.
  * @see {@link https://developers.google.com/tenor/guides/endpoints#parameters-categsearch-suggestionsories}
  */
 export interface SearchSuggestionsParameters
   extends Pick<SearchParameters, "client_key" | "country" | "locale" | "limit"> {}
 
-/**
- * Describes the query string parameters of the `Autocomplete` endpoint.
- * @see {@link https://developers.google.com/tenor/guides/endpoints#parameters-autocomplete}
- */
+/** @see {@link https://developers.google.com/tenor/guides/endpoints#parameters-autocomplete} */
 export interface AutocompleteParameters extends SearchSuggestionsParameters {}
 
-/**
- * Describes the query string parameters of the `Trending Search Terms` endpoint.
- * @see {@link https://developers.google.com/tenor/guides/endpoints#parameters-trending-search}
- */
+/** @see {@link https://developers.google.com/tenor/guides/endpoints#parameters-trending-search} */
 export interface TrendingSearchTermsParameters extends SearchSuggestionsParameters {}
 
-/**
- * Describes the query string parameters of the `Posts` endpoint.
- * @see {@link https://developers.google.com/tenor/guides/endpoints#parameters-posts}
- */
+/** @see {@link https://developers.google.com/tenor/guides/endpoints#parameters-posts} */
 export interface PostsParameters extends Pick<SearchParameters, "client_key" | "media_filter"> {}
 
-/**
- * Describes the JSON object response of the `Search` endpoint, which contains a list of GIFs.
- * @see {@link https://developers.google.com/tenor/guides/endpoints#response-format-search}
- */
+/** @see {@link https://developers.google.com/tenor/guides/endpoints#response-format-search} */
 export interface SearchResponse {
   /**
    * A position identifier to use with the next API query, through the `pos` field, to retrieve the
@@ -281,21 +255,13 @@ export interface SearchResponse {
   readonly results: RESPONSE_OBJECT[];
 }
 
-/**
- * Describes the JSON object response of the `Featured` endpoint, which contains a list of featured
- * GIFs.
- * @see {@link https://developers.google.com/tenor/guides/endpoints#response-format-featured}
- */
+/** @see {@link https://developers.google.com/tenor/guides/endpoints#response-format-featured} */
 export interface FeaturedResponse extends SearchResponse {
   /** An array of {@link RESPONSE_OBJECT response objects}. */
   readonly results: RESPONSE_OBJECT[];
 }
 
-/**
- * Describes the JSON object response of the `Categories` endpoint, which contains a list of GIF
- * categories.
- * @see {@link https://developers.google.com/tenor/guides/endpoints#response-format-categories}
- */
+/** @see {@link https://developers.google.com/tenor/guides/endpoints#response-format-categories} */
 export interface CategoriesResponse {
   /**
    * An array of {@link CATEGORY_OBJECT Category Objects} where the `name` field has been translated
@@ -305,8 +271,6 @@ export interface CategoriesResponse {
 }
 
 /**
- * Describes the JSON object response of the `Search Suggestions` endpoint, which contains a list of
- * alternative search terms.
  * @see {@link https://developers.google.com/tenor/guides/endpoints#response-format-search-suggestions}
  */
 export interface SearchSuggestionsResponse {
@@ -315,15 +279,11 @@ export interface SearchSuggestionsResponse {
 }
 
 /**
- * Describes the JSON object response of the `Autocomplete` endpoint, which contains a list of
- * completed search terms.
  * @see {@link https://developers.google.com/tenor/guides/endpoints#response-format-autocomplete}
  */
 export interface AutocompleteResponse extends SearchSuggestionsResponse {}
 
 /**
- * Describes the JSON object response of the `Trending Search Terms` endpoint, which contains a list
- * of trending search terms.
  * @see {@link https://developers.google.com/tenor/guides/endpoints#response-format-trending-search}
  */
 export interface TrendingSearchTermsResponse extends SearchSuggestionsResponse {
@@ -331,11 +291,7 @@ export interface TrendingSearchTermsResponse extends SearchSuggestionsResponse {
   readonly results: string[];
 }
 
-/**
- * Describes the JSON object response of the `Posts` endpoint, which contains a list of GIFs,
- * stickers, or a combination of the two.
- * @see {@link https://developers.google.com/tenor/guides/endpoints#response-format-posts}
- */
+/** @see {@link https://developers.google.com/tenor/guides/endpoints#response-format-posts} */
 export interface PostsResponse {
   /**
    * An array of {@link RESPONSE_OBJECT response objects} that correspond to those passed in the
@@ -349,8 +305,8 @@ export class Tenor {
   #key: string;
 
   /**
-   * Constructs a new Tenor API endpoints wrapper.
-   * @param key The Tenor API key.
+   * Constructs a new wrapper for fetching the Tenor API endpoints.
+   * @param key The Tenor API key to use.
    */
   constructor(key: string) {
     this.#key = key;
@@ -359,9 +315,9 @@ export class Tenor {
   /**
    * Fetches a JSON object that contains a list of the most relevant GIFs for a given set of search
    * terms, categories, emojis, or any combination of these.
-   * @param query The search term.
-   * @param parameters The optional endpoint parameters.
-   * @returns The JSON object containing a list of GIFs.
+   * @param query The search term to use.
+   * @param parameters The optional parameters to pass when the endpoint is fetched.
+   * @returns The fetched JSON object containing a list of GIFs.
    */
   public async fetchGifsByQuery(query: string, parameters?: SearchParameters) {
     return fetchJson<SearchResponse>(
@@ -372,8 +328,8 @@ export class Tenor {
 
   /**
    * Fetches a JSON object that contains a list of the current global featured GIFs.
-   * @param parameters The optional endpoint parameters.
-   * @returns The JSON object containing a list of featured GIFs.
+   * @param parameters The optional parameters to pass when the endpoint is fetched.
+   * @returns The fetched JSON object containing a list of featured GIFs.
    */
   public async fetchFeaturedGifs(parameters?: FeaturedParameters) {
     return fetchJson<FeaturedResponse>(
@@ -384,8 +340,8 @@ export class Tenor {
 
   /**
    * Fetches a JSON object that contains a list of GIF categories associated with the provided type.
-   * @param parameters The optional endpoint parameters.
-   * @returns The JSON object containing a list of GIF categories.
+   * @param parameters The optional parameters to pass when the endpoint is fetched.
+   * @returns The fetched JSON object containing a list of GIF categories.
    */
   public async fetchGifCategories(parameters?: CategoriesParameters) {
     return fetchJson<CategoriesResponse>(
@@ -396,9 +352,9 @@ export class Tenor {
 
   /**
    * Fetches a JSON object that contains a list of alternative search terms for a given search term.
-   * @param query The search term.
-   * @param parameters The optional endpoint parameters.
-   * @returns The JSON object containing a list of alternative search terms.
+   * @param query The search term to use.
+   * @param parameters The optional parameters to pass when the endpoint is fetched.
+   * @returns The fetched JSON object containing a list of alternative search terms.
    */
   public async fetchSearchSuggestionsByQuery(
     query: string,
@@ -413,9 +369,9 @@ export class Tenor {
   /**
    * Fetches a JSON object that contains a list of completed search terms for a given partial search
    * term.
-   * @param query The partial search term.
-   * @param parameters The optional endpoint parameters.
-   * @returns The JSON object containing a list of completed search terms.
+   * @param query The partial search term to use.
+   * @param parameters The optional parameters to pass when the endpoint is fetched.
+   * @returns The fetched JSON object containing a list of completed search terms.
    */
   public async fetchAutocompleteByQuery(query: string, parameters?: AutocompleteParameters) {
     return fetchJson<AutocompleteResponse>(
@@ -426,8 +382,8 @@ export class Tenor {
 
   /**
    * Fetches a JSON object that contains a list of the current trending search terms.
-   * @param parameters The optional endpoint parameters.
-   * @returns The JSON object containing a list of trending search terms.
+   * @param parameters The optional parameters to pass when the endpoint is fetched.
+   * @returns The fetched JSON object containing a list of trending search terms.
    */
   public async fetchTrendingSearchTerms(parameters?: TrendingSearchTermsParameters) {
     return fetchJson<TrendingSearchTermsResponse>(
@@ -438,9 +394,9 @@ export class Tenor {
 
   /**
    * Fetches the GIFs, stickers, or a combination of the two for the specified IDs.
-   * @param ids The comma-separated list of IDs.
-   * @param parameters The optional endpoint parameters.
-   * @returns The JSON object containing a list of GIFs, stickers, or a combination of the two.
+   * @param ids The comma-separated list of IDs to use.
+   * @param parameters The optional parameters to pass when the endpoint is fetched.
+   * @returns The fetched JSON object containing a list of GIFs, stickers, or a combination of the two.
    */
   public async fetchPostsById(ids: string, parameters?: PostsParameters) {
     return fetchJson<PostsResponse>(
