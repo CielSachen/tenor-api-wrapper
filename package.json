@@ -31,11 +31,12 @@
   ],
   "scripts": {
     "build": "tsup",
-    "format": "prettier . --check",
-    "format:fix": "prettier . --write",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "prepack": "pnpm run build"
+    "prepack": "pnpm run build",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@types/node": "^20.14.2",
