@@ -1,6 +1,6 @@
 {
   "name": "@cielsachen/tenor-api-wrapper",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A simple way to interact with the Tenor API (v2).",
   "keywords": [
     "nodejs",
