@@ -8,7 +8,7 @@
     // Modules
     "module": "Preserve",
     "paths": {
-      "@/errors": ["./src/errors/index.ts"],
+      "@/errors/*": ["./src/errors/*"],
       "@/lib/*": ["./src/lib/*"]
     },
     "resolveJsonModule": true,

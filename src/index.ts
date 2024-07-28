@@ -1,2 +1,2 @@
 export * from "./Tenor.js";
-export * from "@/errors";
+export * from "@/errors/GoogleApiError.js";
