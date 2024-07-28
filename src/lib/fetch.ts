@@ -6,7 +6,18 @@ import { GoogleApiError, type GoogleError } from "@/errors";
  * @param parameters The parameters of the endpoint.
  * @returns The fetched JSON object response.
  */
-export async function fetchJson<T extends object>(endpoint: string, parameters: URLSearchParams) {
+export async function fetchJson<TEndpointResponse extends object>(
+  endpoint:
+    | "search"
+    | "featured"
+    | "categories"
+    | "search_suggestions"
+    | "autocomplete"
+    | "trending_terms"
+    | "registershare"
+    | "posts",
+  parameters: URLSearchParams,
+) {
   const response = await fetch(
     `https://tenor.googleapis.com/v2/${endpoint}?${parameters.toString()}`,
   );
@@ -14,7 +25,7 @@ export async function fetchJson<T extends object>(endpoint: string, parameters: 
   if (!response.headers.get("content-type")?.includes("application/json"))
     throw new Error(`${response.statusText} (${response.status.toString()})`);
 
-  const responseJson = (await response.json()) as GoogleError | T;
+  const responseJson = (await response.json()) as GoogleError | TEndpointResponse;
 
   if ("error" in responseJson) throw new GoogleApiError(responseJson.error);
 
