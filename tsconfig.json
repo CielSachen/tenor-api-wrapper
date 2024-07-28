@@ -7,10 +7,9 @@
 
     // Modules
     "module": "Preserve",
-    "baseUrl": "./src/",
     "paths": {
-      "@/errors": ["errors/index.ts"],
-      "@/lib/*": ["lib/*"]
+      "@/errors": ["./src/errors/index.ts"],
+      "@/lib/*": ["./src/lib/*"]
     },
     "resolveJsonModule": true,
 
