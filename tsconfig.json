@@ -13,10 +13,6 @@
     },
     "resolveJsonModule": true,
 
-    // JavaScript Support
-    "allowJs": true,
-    "checkJs": true,
-
     // Emit
     "noEmit": true,
 
