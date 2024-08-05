@@ -1,50 +1,50 @@
 /**
- * This message has the same semantics as `google.rpc.Status`. It uses HTTP status code instead of
- * gRPC status code. It has extra fields `status` and `errors` for backward compatibility with
- * {@link https://developers.google.com/api-client-library Google API Client Libraries}.
- *
- * _Converted from Protocol Buffers to TypeScript._
+ * Describes the error payload for Google's APIs.
+ * @see {@link https://cloud.google.com/apis/design/errors#http_mapping}
  */
-export interface Status {
-  /** The HTTP status code that corresponds to `google.rpc.Status.code`. */
+export interface GoogleApiErrorPayload {
+  /** The HTTP status code corresponding to the gRPC status code. */
   readonly code: number;
-  /** This corresponds to `google.rpc.Status.message`. */
+  /** The human-readable error message. */
   readonly message: string;
-  /** This is the enum version for `google.rpc.Status.code`. */
+  /** The gRPC status code of the error. */
   readonly status?: string;
-  /** This corresponds to `google.rpc.Status.details`. */
-  readonly details?: readonly Record<string, unknown>[];
+  /** An array of objects containing additional details about the error. */
+  readonly details?: readonly {
+    readonly [key: string]: unknown;
+    /** The resource name of the protocol buffer message. */
+    readonly "@type": string;
+  }[];
 }
 
 /**
- * This message defines the error schema for Google's JSON HTTP APIs.
- *
- * _Converted from Protocol Buffers to TypeScript._
- * @see {@link https://cloud.google.com/apis/design/errors#http_mapping Google Cloud APIs ErrorDocumentation}
+ * Describes the error response of Google's APIs.
+ * @see {@link https://cloud.google.com/apis/design/errors#http_mapping}
  */
-export interface GoogleError {
-  /**
-   * The actual error payload. The nested message structure is for backward compatibility with
-   * {@link https://developers.google.com/api-client-library Google API Client Libraries}. It also
-   * makes the error more readable to developers.
-   */
-  readonly error: Status;
+export interface GoogleApiErrorResponse {
+  /** The error's payload. */
+  readonly error: GoogleApiErrorPayload;
 }
 
-/** Represents a Google API error object. */
-export class GoogleApiError extends Error implements Omit<Status, "message"> {
-  /** The HTTP status code that corresponds to `google.rpc.Status.code`. */
+/** Represents an error received from Google's APIs. */
+export class GoogleApiError extends Error implements GoogleApiErrorPayload {
+  /**
+   * The HTTP status code corresponding to the gRPC status code.
+   * @see {@link https://cloud.google.com/apis/design/errors#handling_errors Handling Errors} for
+   *     the list of HTTP status codes.
+   */
   public readonly code;
-  /** This is the enum version for `google.rpc.Status.code`. */
+  /**
+   * The gRPC status code of this error.
+   * @see {@link https://cloud.google.com/apis/design/errors#handling_errors Handling Errors} for
+   *     the list of gRPC status codes.
+   */
   public readonly status?;
-  /** This corresponds to `google.rpc.Status.details`. */
+  /** An array of objects containing additional details about this error. */
   public readonly details?;
 
-  /**
-   * Constructs a new instance of a Google API error object.
-   * @param error The actual error payload.
-   */
-  constructor(error: Status) {
+  /** @param error This error's payload. */
+  constructor(error: GoogleApiErrorPayload) {
     super(error.message);
 
     this.name = "GoogleApiError";

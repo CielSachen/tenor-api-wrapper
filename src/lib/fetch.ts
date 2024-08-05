@@ -1,4 +1,4 @@
-import { GoogleApiError, type GoogleError } from "@/errors/GoogleApiError.js";
+import { GoogleApiError, type GoogleApiErrorResponse } from "@/errors/GoogleApiError.js";
 
 /**
  * Fetches the JSON object response of a Tenor API endpoint.
@@ -25,7 +25,7 @@ export async function fetchJson<TEndpointResponse extends object>(
   if (!response.headers.get("content-type")?.includes("application/json"))
     throw new Error(`${response.statusText} (${response.status.toString()})`);
 
-  const responseJson = (await response.json()) as GoogleError | TEndpointResponse;
+  const responseJson = (await response.json()) as GoogleApiErrorResponse | TEndpointResponse;
 
   if ("error" in responseJson) throw new GoogleApiError(responseJson.error);
 
