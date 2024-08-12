@@ -1,10 +1,10 @@
 import { GoogleApiError, type GoogleApiErrorResponse } from "@/errors/GoogleApiError.js";
 
 /**
- * Fetches the JSON object response of a Tenor API endpoint.
- * @param endpoint The Tenor API endpoint to fetch.
- * @param parameters The parameters of the endpoint.
- * @returns The fetched JSON object response.
+ * Fetches the provided endpoint of Tenor's API with the provided URL parameters.
+ * @param endpoint The endpoint of Tenor's API to fetch.
+ * @param urlParameters The URL parameters of the endpoint.
+ * @returns The JSON data response of the endpoint of Tenor's API.
  */
 export async function fetchJson<TEndpointResponse extends object>(
   endpoint:
@@ -16,10 +16,10 @@ export async function fetchJson<TEndpointResponse extends object>(
     | "trending_terms"
     | "registershare"
     | "posts",
-  parameters: URLSearchParams,
+  urlParameters: URLSearchParams,
 ) {
   const response = await fetch(
-    `https://tenor.googleapis.com/v2/${endpoint}?${parameters.toString()}`,
+    `https://tenor.googleapis.com/v2/${endpoint}?${urlParameters.toString()}`,
   );
 
   if (!response.headers.get("content-type")?.includes("application/json"))

@@ -3,11 +3,17 @@
  * @see {@link https://cloud.google.com/apis/design/errors#http_mapping}
  */
 export interface GoogleApiErrorPayload {
-  /** The HTTP status code corresponding to the gRPC status code. */
+  /**
+   * The HTTP status code corresponding to the gRPC status code.
+   * @see {@link https://cloud.google.com/apis/design/errors#handling_errors}
+   */
   readonly code: number;
   /** The human-readable error message. */
   readonly message: string;
-  /** The gRPC status code of the error. */
+  /**
+   * The gRPC status code of the error.
+   * @see {@link https://cloud.google.com/apis/design/errors#handling_errors}
+   */
   readonly status?: string;
   /** An array of objects containing additional details about the error. */
   readonly details?: readonly {
@@ -30,14 +36,12 @@ export interface GoogleApiErrorResponse {
 export class GoogleApiError extends Error implements GoogleApiErrorPayload {
   /**
    * The HTTP status code corresponding to the gRPC status code.
-   * @see {@link https://cloud.google.com/apis/design/errors#handling_errors Handling Errors} for
-   *     the list of HTTP status codes.
+   * @see {@link https://cloud.google.com/apis/design/errors#handling_errors}
    */
   public readonly code;
   /**
    * The gRPC status code of this error.
-   * @see {@link https://cloud.google.com/apis/design/errors#handling_errors Handling Errors} for
-   *     the list of gRPC status codes.
+   * @see {@link https://cloud.google.com/apis/design/errors#handling_errors}
    */
   public readonly status?;
   /** An array of objects containing additional details about this error. */

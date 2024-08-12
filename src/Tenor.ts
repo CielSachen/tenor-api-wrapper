@@ -1,7 +1,7 @@
 import { fetchJson } from "@/lib/fetch.js";
 
 /**
- * @see {@link https://developers.google.com/tenor/guides/response-objects-and-errors#format-typesTenor}
+ * {@link https://developers.google.com/tenor/guides/response-objects-and-errors#format-typesTenor}
  */
 export type CONTENT_FORMAT =
   | "gif"
@@ -29,9 +29,7 @@ export type CONTENT_FORMAT =
   | "tinygif_transparent"
   | "nanogif_transparent";
 
-/**
- * @see {@link https://developers.google.com/tenor/guides/response-objects-and-errors#media-object}
- */
+/** {@link https://developers.google.com/tenor/guides/response-objects-and-errors#media-object} */
 export interface MEDIA_OBJECT {
   /** A url to the media source. */
   readonly url: string;
@@ -47,18 +45,26 @@ export interface MEDIA_OBJECT {
 }
 
 /**
- * @see {@link https://developers.google.com/tenor/guides/response-objects-and-errors#response-object}
+ * {@link https://developers.google.com/tenor/guides/response-objects-and-errors#response-object}
  */
 export interface RESPONSE_OBJECT {
   /** A Unix timestamp that represents when this post was created. */
   readonly created: number;
-  /** Returns `true` if this post contains audio. */
+  /**
+   * Returns `true` if this post contains audio.
+   *
+   * **Note:** Only video formats support audio. The GIF image file format can't contain audio
+   * information.
+   */
   readonly hasaudio: boolean;
   /** Tenor result identifier. */
   readonly id: string;
   /**
-   * A dictionary with a {@link CONTENT_FORMAT content format} as the key and a
-   * {@link MEDIA_OBJECT Media Object} as the value.
+   * A dictionary with a
+   * {@link https://developers.google.com/tenor/guides/response-objects-and-errors#content-formats content format}
+   * as the key and and a
+   * {@link https://developers.google.com/tenor/guides/response-objects-and-errors#media-object Media Object}
+   * as the value.
    */
   readonly media_formats: Record<Partial<CONTENT_FORMAT>, MEDIA_OBJECT>;
   /** An array of tags for the post. */
@@ -88,7 +94,7 @@ export interface RESPONSE_OBJECT {
 }
 
 /**
- * @see {@link https://developers.google.com/tenor/guides/response-objects-and-errors#category-object}
+ * {@link https://developers.google.com/tenor/guides/response-objects-and-errors#category-object}
  */
 export interface CATEGORY_OBJECT {
   /**
@@ -107,7 +113,7 @@ export interface CATEGORY_OBJECT {
   readonly name: string;
 }
 
-/** @see {@link https://developers.google.com/tenor/guides/endpoints#parameters-search} */
+/** {@link https://developers.google.com/tenor/guides/endpoints#parameters-search} */
 export interface SearchParameters {
   /**
    * A client-specified string that represents the integration.
@@ -124,7 +130,8 @@ export interface SearchParameters {
   client_key?: string;
   /**
    * Comma-separated list of non-GIF content types to filter the
-   * {@link RESPONSE_OBJECT response objects}. By default, `searchfilter` returns GIF content only.
+   * {@link https://developers.google.com/tenor/guides/response-objects-and-errors#response-object response objects}.
+   * By default, `searchfilter` returns GIF content only.
    *
    * Doesn't have a default value. The accepted values are `sticker`, `static`, and `-static`:
    *
@@ -136,23 +143,26 @@ export interface SearchParameters {
   searchfilter?: "sticker" | "sticker,-static" | "sticker,static";
   /**
    * Specify the country of origin for the request. To do so, provide its two-letter
-   * {@link https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes ISO 3166-1} country code.
+   * {@link https://en.wikipedia.org/wiki/ISO_3166-1#Codes ISO 3166-1} country code.
    *
-   * The default value is US.
+   * The default value is `US`.
    * @default "US"
+   * @see {@link https://en.wikipedia.org/wiki/ISO_3166-1#Codes}
    */
   country?: Uppercase<string>;
   /**
    * Specify the default language to interpret the search string. `xx` is the language's
    * {@link https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes ISO 639-1} language code,
    * while the optional `_YY` value is the two-letter
-   * {@link https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes ISO 3166-1} country code.
+   * {@link https://en.wikipedia.org/wiki/ISO_3166-1#Codes ISO 3166-1} country code.
    *
    * You can use the country code that you provide in `locale` to differentiate between dialects of
    * the given language.
    *
    * The default value is `en_US`.
    * @default "en_US"
+   * @see {@link https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes}
+   * @see {@link https://en.wikipedia.org/wiki/ISO_3166-1#Codes}
    */
   locale?: Lowercase<string> | `${Lowercase<string>}_${Uppercase<string>}`;
   /**
@@ -163,19 +173,21 @@ export interface SearchParameters {
    */
   contentfilter?: "off" | "low" | "medium" | "high";
   /**
-   * Comma-separated list of GIF formats to filter the {@link RESPONSE_OBJECT response objects}. By
-   * default, `media_filter` returns all formats for each Response Object.
+   * Comma-separated list of GIF formats to filter the
+   * {@link https://developers.google.com/tenor/guides/response-objects-and-errors#response-object response objects}.
+   * By default, `media_filter` returns all formats for each Response Object.
    *
    * Example: `media_filter=gif,tinygif,mp4,tinymp4`
    *
    * Doesn't have a default value.
    * @example
-   * { media_filter: 'gif,tinygif,mp4,tinymp4' }
+   * { media_filter: "gif,tinygif,mp4,tinymp4" }
    */
   media_filter?: string;
   /**
-   * Filter the {@link RESPONSE_OBJECT response objects} to only include GIFs with aspect ratios
-   * that fit within the selected range.
+   * Filter the
+   * {@link https://developers.google.com/tenor/guides/response-objects-and-errors#response-object response objects}
+   * to only include GIFs with aspect ratios that fit within the selected range.
    *
    * The default value is `all`. The accepted values are `all`, `wide`, and `standard`:
    *
@@ -210,10 +222,10 @@ export interface SearchParameters {
   pos?: string;
 }
 
-/** @see {@link https://developers.google.com/tenor/guides/endpoints#parameters-featured} */
+/** {@link https://developers.google.com/tenor/guides/endpoints#parameters-featured} */
 export interface FeaturedParameters extends Omit<SearchParameters, "random"> {}
 
-/** @see {@link https://developers.google.com/tenor/guides/endpoints#parameters-categories} */
+/** {@link https://developers.google.com/tenor/guides/endpoints#parameters-categories} */
 export interface CategoriesParameters
   extends Pick<SearchParameters, "client_key" | "country" | "locale" | "contentfilter"> {
   /**
@@ -221,27 +233,27 @@ export interface CategoriesParameters
    *
    * The default value is featured. The accepted values are featured and trending.
    * @default
-   * { type: 'featured' }
+   * { type: "featured" }
    */
   type?: "featured" | "trending";
 }
 
 /**
- * @see {@link https://developers.google.com/tenor/guides/endpoints#parameters-categsearch-suggestionsories}
+ * {@link https://developers.google.com/tenor/guides/endpoints#parameters-categsearch-suggestionsories}
  */
 export interface SearchSuggestionsParameters
   extends Pick<SearchParameters, "client_key" | "country" | "locale" | "limit"> {}
 
-/** @see {@link https://developers.google.com/tenor/guides/endpoints#parameters-autocomplete} */
+/** {@link https://developers.google.com/tenor/guides/endpoints#parameters-autocomplete} */
 export interface AutocompleteParameters extends SearchSuggestionsParameters {}
 
-/** @see {@link https://developers.google.com/tenor/guides/endpoints#parameters-trending-search} */
+/** {@link https://developers.google.com/tenor/guides/endpoints#parameters-trending-search} */
 export interface TrendingSearchTermsParameters extends SearchSuggestionsParameters {}
 
-/** @see {@link https://developers.google.com/tenor/guides/endpoints#parameters-posts} */
+/** {@link https://developers.google.com/tenor/guides/endpoints#parameters-posts} */
 export interface PostsParameters extends Pick<SearchParameters, "client_key" | "media_filter"> {}
 
-/** @see {@link https://developers.google.com/tenor/guides/endpoints#response-format-search} */
+/** {@link https://developers.google.com/tenor/guides/endpoints#response-format-search} */
 export interface SearchResponse {
   /**
    * A position identifier to use with the next API query, through the `pos` field, to retrieve the
@@ -249,75 +261,74 @@ export interface SearchResponse {
    */
   readonly next: string;
   /**
-   * An array of {@link RESPONSE_OBJECT response objects} that contains the most relevant content
-   * for the requested search term. The content is sorted by its relevancy Rank.
+   * An array of
+   * {@link https://developers.google.com/tenor/guides/response-objects-and-errors#response-object Response Objects}
+   * that contains the most relevant content for the requested search term. The content is sorted by its relevancy Rank.
    */
   readonly results: RESPONSE_OBJECT[];
 }
 
-/** @see {@link https://developers.google.com/tenor/guides/endpoints#response-format-featured} */
+/** {@link https://developers.google.com/tenor/guides/endpoints#response-format-featured} */
 export interface FeaturedResponse extends SearchResponse {
-  /** An array of {@link RESPONSE_OBJECT response objects}. */
+  /**
+   * An array of Featured
+   * {@link https://developers.google.com/tenor/guides/response-objects-and-errors#response-object response objects}.
+   */
   readonly results: RESPONSE_OBJECT[];
 }
 
-/** @see {@link https://developers.google.com/tenor/guides/endpoints#response-format-categories} */
+/** {@link https://developers.google.com/tenor/guides/endpoints#response-format-categories} */
 export interface CategoriesResponse {
   /**
-   * An array of {@link CATEGORY_OBJECT Category Objects} where the `name` field has been translated
-   * into the `locale` language.
+   * An array of
+   * {@link https://developers.google.com/tenor/guides/response-objects-and-errors#category-object CATEGORY_OBJECTS}
+   * where the `name` field has been translated into the `locale` language.
    */
   readonly tags: CATEGORY_OBJECT[];
 }
 
 /**
- * @see {@link https://developers.google.com/tenor/guides/endpoints#response-format-search-suggestions}
+ * {@link https://developers.google.com/tenor/guides/endpoints#response-format-search-suggestions}
  */
 export interface SearchSuggestionsResponse {
   /** An array of suggested search terms. */
   readonly results: string[];
 }
 
-/**
- * @see {@link https://developers.google.com/tenor/guides/endpoints#response-format-autocomplete}
- */
+/** {@link https://developers.google.com/tenor/guides/endpoints#response-format-autocomplete} */
 export interface AutocompleteResponse extends SearchSuggestionsResponse {}
 
-/**
- * @see {@link https://developers.google.com/tenor/guides/endpoints#response-format-trending-search}
- */
+/** {@link https://developers.google.com/tenor/guides/endpoints#response-format-trending-search} */
 export interface TrendingSearchTermsResponse extends SearchSuggestionsResponse {
   /** An array of suggested search terms. The terms are sorted by their Trending Rank. */
   readonly results: string[];
 }
 
-/** @see {@link https://developers.google.com/tenor/guides/endpoints#response-format-posts} */
+/** {@link https://developers.google.com/tenor/guides/endpoints#response-format-posts} */
 export interface PostsResponse {
   /**
-   * An array of {@link RESPONSE_OBJECT response objects} that correspond to those passed in the
-   * `ids` list.
+   * An array of
+   * {@link https://developers.google.com/tenor/guides/response-objects-and-errors#response-object Response Objects}
+   * that correspond to those passed in the `ids` list.
    */
   readonly results: RESPONSE_OBJECT[];
 }
 
-/** Represents a wrapper for fetching the Tenor API endpoints. */
+/** A wrapper for fetching Tenor's API endpoints. */
 export class Tenor {
   #key: string;
 
-  /**
-   * Constructs a new wrapper for fetching the Tenor API endpoints.
-   * @param key The Tenor API key to use.
-   */
+  /** @param key The API key to use. */
   constructor(key: string) {
     this.#key = key;
   }
 
   /**
-   * Fetches a JSON object that contains a list of the most relevant GIFs for a given set of search
-   * terms, categories, emojis, or any combination of these.
+   * Fetches the `Search` endpoint of Tenor's API with the provided query and given parameters.
    * @param query The search term to use.
-   * @param parameters The optional parameters to pass when the endpoint is fetched.
-   * @returns The fetched JSON object containing a list of GIFs.
+   * @param parameters The optional parameters to use.
+   * @returns The JSON data response of the `Search` endpoint.
+   * @see {@link https://developers.google.com/tenor/guides/endpoints#search}
    */
   public async fetchGifsByQuery(query: string, parameters?: SearchParameters) {
     return fetchJson<SearchResponse>(
@@ -325,11 +336,11 @@ export class Tenor {
       new URLSearchParams({ key: this.#key, q: query, ...parameters }),
     );
   }
-
   /**
-   * Fetches a JSON object that contains a list of the current global featured GIFs.
-   * @param parameters The optional parameters to pass when the endpoint is fetched.
-   * @returns The fetched JSON object containing a list of featured GIFs.
+   * Fetches the `Featured` endpoint of Tenor's API with the given parameters.
+   * @param parameters The optional parameters to use.
+   * @returns The JSON data response of the `Featured` endpoint.
+   * @see {@link https://developers.google.com/tenor/guides/endpoints#featured}
    */
   public async fetchFeaturedGifs(parameters?: FeaturedParameters) {
     return fetchJson<FeaturedResponse>(
@@ -337,11 +348,11 @@ export class Tenor {
       new URLSearchParams({ key: this.#key, ...parameters }),
     );
   }
-
   /**
-   * Fetches a JSON object that contains a list of GIF categories associated with the provided type.
-   * @param parameters The optional parameters to pass when the endpoint is fetched.
-   * @returns The fetched JSON object containing a list of GIF categories.
+   * Fetches the `Categories` endpoint of Tenor's API with the given parameters.
+   * @param parameters The optional parameters to use.
+   * @returns The JSON data response of the `Categories` endpoint.
+   * @see {@link https://developers.google.com/tenor/guides/endpoints#categories}
    */
   public async fetchGifCategories(parameters?: CategoriesParameters) {
     return fetchJson<CategoriesResponse>(
@@ -349,12 +360,13 @@ export class Tenor {
       new URLSearchParams({ key: this.#key, ...parameters }),
     );
   }
-
   /**
-   * Fetches a JSON object that contains a list of alternative search terms for a given search term.
+   * Fetches the `Search Suggestions` endpoint of Tenor's API with the provided query and given
+   * parameters.
    * @param query The search term to use.
-   * @param parameters The optional parameters to pass when the endpoint is fetched.
-   * @returns The fetched JSON object containing a list of alternative search terms.
+   * @param parameters The optional parameters to use.
+   * @returns The JSON data response of the `Search Suggestions` endpoint.
+   * @see {@link https://developers.google.com/tenor/guides/endpoints#search-suggestions}
    */
   public async fetchSearchSuggestionsByQuery(
     query: string,
@@ -365,13 +377,13 @@ export class Tenor {
       new URLSearchParams({ key: this.#key, q: query, ...parameters }),
     );
   }
-
   /**
-   * Fetches a JSON object that contains a list of completed search terms for a given partial search
-   * term.
+   * Fetches the `Autocomplete` endpoint of Tenor's API with the provided query and given
+   * parameters.
    * @param query The partial search term to use.
-   * @param parameters The optional parameters to pass when the endpoint is fetched.
-   * @returns The fetched JSON object containing a list of completed search terms.
+   * @param parameters The optional parameters to use.
+   * @returns The JSON data response of the `Autocomplete` endpoint.
+   * @see {@link https://developers.google.com/tenor/guides/endpoints#autocomplete}
    */
   public async fetchAutocompleteByQuery(query: string, parameters?: AutocompleteParameters) {
     return fetchJson<AutocompleteResponse>(
@@ -379,11 +391,11 @@ export class Tenor {
       new URLSearchParams({ key: this.#key, q: query, ...parameters }),
     );
   }
-
   /**
-   * Fetches a JSON object that contains a list of the current trending search terms.
-   * @param parameters The optional parameters to pass when the endpoint is fetched.
-   * @returns The fetched JSON object containing a list of trending search terms.
+   * Fetches the `Trending Search Terms` endpoint of Tenor's API with the given parameters.
+   * @param parameters The optional parameters to use.
+   * @returns The JSON data response of the `Trending Search Terms` endpoint.
+   * @see {@link https://developers.google.com/tenor/guides/endpoints#trending-search}
    */
   public async fetchTrendingSearchTerms(parameters?: TrendingSearchTermsParameters) {
     return fetchJson<TrendingSearchTermsResponse>(
@@ -391,12 +403,14 @@ export class Tenor {
       new URLSearchParams({ key: this.#key, ...parameters }),
     );
   }
-
   /**
-   * Fetches the GIFs, stickers, or a combination of the two for the specified IDs.
-   * @param ids The comma-separated list of IDs to use.
-   * @param parameters The optional parameters to pass when the endpoint is fetched.
-   * @returns The fetched JSON object containing a list of GIFs, stickers, or a combination of the two.
+   * Fetches the `Posts` endpoint of Tenor's API with the provided IDs and given parameters.
+   * @param ids The array of
+   *     {@link https://developers.google.com/tenor/guides/response-objects-and-errors#response-object response objects }
+   *     IDs to use.
+   * @param parameters The optional parameters to use.
+   * @returns The JSON data response of the `Posts` endpoint.
+   * @see {@link https://developers.google.com/tenor/guides/endpoints#posts}
    */
   public async fetchPostsById(ids: string, parameters?: PostsParameters) {
     return fetchJson<PostsResponse>(
