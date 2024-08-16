@@ -66,7 +66,7 @@ export interface RESPONSE_OBJECT {
    * {@link https://developers.google.com/tenor/guides/response-objects-and-errors#media-object Media Object}
    * as the value.
    */
-  readonly media_formats: Record<Partial<CONTENT_FORMAT>, MEDIA_OBJECT>;
+  readonly media_formats: Partial<Record<CONTENT_FORMAT, MEDIA_OBJECT>>;
   /** An array of tags for the post. */
   readonly tags: string[];
   /** The title of the post. */
