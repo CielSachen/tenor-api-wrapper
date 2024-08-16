@@ -4,14 +4,11 @@ import { fetchJson } from "@/lib/fetch.js";
  * {@link https://developers.google.com/tenor/guides/response-objects-and-errors#format-typesTenor}
  */
 export type CONTENT_FORMAT =
+  | "preview"
   | "gif"
-  | "gifpreview"
   | "mediumgif"
-  | "mediumgifpreview"
   | "tinygif"
-  | "tinygifpreview"
   | "nanogif"
-  | "nanogifpreview"
   | "mp4"
   | "loopedmp4"
   | "tinymp4"
@@ -20,11 +17,8 @@ export type CONTENT_FORMAT =
   | "tinywebm"
   | "nanowebm"
   | "webp_transparent"
-  | "webppreview_transparent"
   | "tinywebp_transparent"
-  | "tinywebppreview_transparent"
   | "nanowebp_transparent"
-  | "nanowebppreview_transparent"
   | "gif_transparent"
   | "tinygif_transparent"
   | "nanogif_transparent";
