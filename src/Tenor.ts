@@ -317,6 +317,19 @@ export class Tenor {
     this.#key = key;
   }
 
+  #createUrlParameters<TParameters extends SearchParameters>(parameters?: TParameters) {
+    const urlParameters = new URLSearchParams({ key: this.#key });
+
+    if (parameters)
+      for (const parameter in parameters) {
+        const parameterValue = parameters[parameter];
+
+        if (parameterValue) urlParameters.append(parameter, parameterValue.toString());
+      }
+
+    return urlParameters;
+  }
+
   /**
    * Fetches the `Search` endpoint of Tenor's API with the provided query and given parameters.
    * @param query The search term to use.
@@ -327,7 +340,7 @@ export class Tenor {
   public async fetchGifsByQuery(query: string, parameters?: SearchParameters) {
     return fetchJson<SearchResponse>(
       "search",
-      new URLSearchParams({ key: this.#key, q: query, ...parameters }),
+      this.#createUrlParameters({ q: query, ...parameters }),
     );
   }
   /**
@@ -337,10 +350,7 @@ export class Tenor {
    * @see {@link https://developers.google.com/tenor/guides/endpoints#featured}
    */
   public async fetchFeaturedGifs(parameters?: FeaturedParameters) {
-    return fetchJson<FeaturedResponse>(
-      "featured",
-      new URLSearchParams({ key: this.#key, ...parameters }),
-    );
+    return fetchJson<FeaturedResponse>("featured", this.#createUrlParameters(parameters));
   }
   /**
    * Fetches the `Categories` endpoint of Tenor's API with the given parameters.
@@ -349,10 +359,7 @@ export class Tenor {
    * @see {@link https://developers.google.com/tenor/guides/endpoints#categories}
    */
   public async fetchGifCategories(parameters?: CategoriesParameters) {
-    return fetchJson<CategoriesResponse>(
-      "categories",
-      new URLSearchParams({ key: this.#key, ...parameters }),
-    );
+    return fetchJson<CategoriesResponse>("categories", this.#createUrlParameters(parameters));
   }
   /**
    * Fetches the `Search Suggestions` endpoint of Tenor's API with the provided query and given
@@ -368,7 +375,7 @@ export class Tenor {
   ) {
     return fetchJson<SearchSuggestionsResponse>(
       "search_suggestions",
-      new URLSearchParams({ key: this.#key, q: query, ...parameters }),
+      this.#createUrlParameters({ q: query, ...parameters }),
     );
   }
   /**
@@ -382,7 +389,7 @@ export class Tenor {
   public async fetchAutocompleteByQuery(query: string, parameters?: AutocompleteParameters) {
     return fetchJson<AutocompleteResponse>(
       "autocomplete",
-      new URLSearchParams({ key: this.#key, q: query, ...parameters }),
+      this.#createUrlParameters({ q: query, ...parameters }),
     );
   }
   /**
@@ -394,7 +401,7 @@ export class Tenor {
   public async fetchTrendingSearchTerms(parameters?: TrendingSearchTermsParameters) {
     return fetchJson<TrendingSearchTermsResponse>(
       "trending_terms",
-      new URLSearchParams({ key: this.#key, ...parameters }),
+      this.#createUrlParameters(parameters),
     );
   }
   /**
@@ -407,9 +414,6 @@ export class Tenor {
    * @see {@link https://developers.google.com/tenor/guides/endpoints#posts}
    */
   public async fetchPostsById(ids: string, parameters?: PostsParameters) {
-    return fetchJson<PostsResponse>(
-      "posts",
-      new URLSearchParams({ ids, key: this.#key, ...parameters }),
-    );
+    return fetchJson<PostsResponse>("posts", this.#createUrlParameters({ ids, ...parameters }));
   }
 }
