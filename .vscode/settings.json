@@ -1,28 +1,29 @@
 {
-  // JavaScript Language Preferences
+  // Text Editor
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.detectIndentation": true,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  // Text Editor Formatting
+  "editor.formatOnSave": true,
+  // Text Editor Files
+  "files.insertFinalNewline": true,
+
+  // Prettier Extension
+  "prettier.configPath": "./prettier.config.js",
+  "prettier.printWidth": 100,
+  // TypeScript Extension
   "javascript.preferences.importModuleSpecifier": "relative",
   "javascript.preferences.importModuleSpecifierEnding": "js",
   "javascript.preferences.quoteStyle": "double",
-
-  // TypeScript Language Preferences
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.preferences.importModuleSpecifierEnding": "js",
   "typescript.preferences.quoteStyle": "double",
   "typescript.tsdk": "./node_modules/typescript/lib",
 
-  // Editor and Workspace
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.detectIndentation": true,
-  "editor.formatOnSave": true,
-  "editor.insertSpaces": true,
-  "editor.tabSize": 2,
-  "files.insertFinalNewline": true,
-
+  // JavaScript Files Only
   "[javascript][typescript]": {
+    // Text Editor
     "editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" }
-  },
-
-  // Workspace Extensions
-  "prettier.configPath": "./prettier.config.js",
-  "prettier.printWidth": 100
+  }
 }
