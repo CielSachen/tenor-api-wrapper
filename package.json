@@ -36,7 +36,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "prepack": "pnpm run build",
-    "typecheck": "tsc --noEmit"
+    "type-check": "tsc --noEmit"
   },
   "devDependencies": {
     "@types/node": "^20.14.2",
