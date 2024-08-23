@@ -1,4 +1,6 @@
 // @ts-check
 
-/** @type {import('prettier').Config} */
+/** @import { Config } from "prettier" */
+
+/** @type {Config} */
 export default { printWidth: 100 };

@@ -1,6 +1,8 @@
 // @ts-check
 
-/** @type {import('@typescript-eslint/utils/ts-eslint').ClassicConfig.Config} */
+/** @import { ClassicConfig } from "@typescript-eslint/utils/ts-eslint" */
+
+/** @type {ClassicConfig.Config} */
 module.exports = {
   env: {
     node: true,
