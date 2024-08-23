@@ -3,12 +3,12 @@
   "version": "2.0.0",
   "description": "A simple way to interact with the Tenor API (v2).",
   "keywords": [
-    "nodejs",
-    "wrapper",
-    "typescript",
     "api-wrapper",
+    "nodejs",
     "tenor-api",
-    "tenor"
+    "tenor",
+    "typescript",
+    "wrapper"
   ],
   "homepage": "https://github.com/CielSachen/tenor-api-wrapper#readme",
   "bugs": {
