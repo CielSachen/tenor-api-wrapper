@@ -39,20 +39,20 @@
     "type-check": "tsc --noEmit"
   },
   "devDependencies": {
-    "@types/node": "^20.14.2",
-    "@typescript-eslint/eslint-plugin": "^7.12.0",
-    "@typescript-eslint/parser": "^7.12.0",
+    "@types/node": "^20.16.1",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-jsdoc": "^48.2.7",
-    "eslint-plugin-simple-import-sort": "^12.1.0",
-    "prettier": "3.3.1",
-    "tsup": "^8.1.0",
-    "typescript": "^5.4.5"
+    "eslint-plugin-jsdoc": "^50.2.2",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "prettier": "3.3.3",
+    "tsup": "^8.2.4",
+    "typescript": "^5.5.4"
   },
-  "packageManager": "pnpm@9.2.0+sha512.98a80fd11c2e7096747762304106432b3ddc67dcf54b5a8c01c93f68a2cd5e05e6821849522a06fb76284d41a2660d5e334f2ee3bbf29183bf2e739b1dafa771",
+  "packageManager": "pnpm@9.8.0+sha512.8e4c3550fb500e808dbc30bb0ce4dd1eb614e30b1c55245f211591ec2cdf9c611cabd34e1364b42f564bd54b3945ed0f49d61d1bbf2ec9bd74b866fcdc723276",
   "engines": {
     "node": ">=20",
     "pnpm": ">=9"
