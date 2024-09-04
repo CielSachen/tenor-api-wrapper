@@ -314,6 +314,13 @@ export class Tenor {
 
   /** @param key The API key to use. */
   constructor(key: string) {
+    if (!key)
+      throw new SyntaxError(
+        "Tenor's API wrapper constructor is missing a required 'key' argument.",
+      );
+    else if (typeof key !== "string")
+      throw new TypeError("The provided Tenor API key does not have a type of 'string.'");
+
     this.#key = key;
   }
 
