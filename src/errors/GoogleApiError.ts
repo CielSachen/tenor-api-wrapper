@@ -38,22 +38,22 @@ export class GoogleApiError extends Error implements GoogleApiErrorPayload {
    * The HTTP status code corresponding to the gRPC status code.
    * @see {@link https://cloud.google.com/apis/design/errors#handling_errors}
    */
-  public readonly code;
+  readonly code;
   /**
    * The gRPC status code of this error.
    * @see {@link https://cloud.google.com/apis/design/errors#handling_errors}
    */
-  public readonly status?;
+  readonly status?;
   /** An array of objects containing additional details about this error. */
-  public readonly details?;
+  readonly details?;
 
-  /** @param error This error's payload. */
-  constructor(error: GoogleApiErrorPayload) {
-    super(error.message);
+  /** @param rawError This error's payload. */
+  constructor(rawError: GoogleApiErrorPayload) {
+    super(rawError.message);
 
     this.name = "GoogleApiError";
-    this.code = error.code;
-    this.status = error.status;
-    this.details = error.details;
+    this.code = rawError.code;
+    this.status = rawError.status;
+    this.details = rawError.details;
   }
 }
